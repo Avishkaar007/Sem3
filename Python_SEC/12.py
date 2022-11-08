@@ -1,5 +1,12 @@
-#!/usr/bin/python3
 
 from matplotlib import pyplot as plt
-
-plt.plot([1,2,3,4,4])
+data=[]
+def inp():
+    n=int(input("Enter number of integers : "))
+    for x in range(n):
+        print("Enter Element ",(x+1)," : ",end="")
+        e=float(input())
+        data.append(e)
+inp()
+plt.hist(data)
+plt.show()

@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+
 
 def check(s1,s2,s3):
         if (s1+s2)>s3:  

@@ -1,4 +1,3 @@
-#!/usr/bin/python3
 
 def linearSearch(lst):
     elem=input("Enter element to be searched ")

@@ -1,4 +1,3 @@
-#!/usr/bin/python3
 
 # Here we will show the frequency of each element irrespective of case
 

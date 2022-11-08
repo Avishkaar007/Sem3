@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+
 
 import my3 as p
 
