@@ -3,5 +3,6 @@
     "files.associations": {
         "ostream": "cpp",
         "iostream": "cpp"
-    }
+    },
+    "python.analysis.typeCheckingMode": "basic"
 }
