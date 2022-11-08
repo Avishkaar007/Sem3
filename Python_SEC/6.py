@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+
 t1=(1,2,5,7,9,2,4,6,8,10)
 def t_even(tup):
     te=()

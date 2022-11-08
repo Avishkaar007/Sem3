@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+
 def func():
 	n=int(input("Enter a number >=10 : "))
 

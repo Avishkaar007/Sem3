@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+
 def menu(*string):
     print("1: Length , 2: Maximum of three strings , 3: Replace all vowels with '#'\n4: Number of Words , 5: Pallindrome")
     ch=int(input("\nEnter input : "))

@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+
 def sale_calc():
 	sales=[]
 	for i in range(4) :
