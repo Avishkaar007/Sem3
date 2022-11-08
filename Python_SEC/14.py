@@ -1,4 +1,5 @@
 try:
+    
     file1=open("file1.txt","w")
     file1.write("This is random text I am typing in midnight\nLine2\nLin3\nLine4\nLine5")
     file1.flush()
