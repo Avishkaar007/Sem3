@@ -1,3 +1,4 @@
+
 try:
     
     file1=open("file1.txt","w")
