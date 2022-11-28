@@ -29,7 +29,7 @@ def polynomial(start,end,curve=""):
     fx=lambda x : eval(curve)
     for b in range(len(X_data)):
         Y_data.append(fx(X_data[b]))
-    print(X_data,"\n", Y_data)
+    print(X_data,"\n",Y_data)
     plt.figure("Curve Fitting")
     plt.plot(X_data,Y_data)
     plt.title("Curve Fitting")
@@ -45,14 +45,12 @@ def exp(val):
     plt.show()
 
 def poly():
-    print("Enter any expression \n just use sin(10) ,e(3) for exponential ,cos(12)\n ")
+    print("Enter any expression \njust use sin(10) or exp(3) for exponential or cos(12) or any polynomial in 'x'\n ")
     curve=input("Enter Curve  : ")
-    
-    if "x" in curve:
+    if curve.isalnum and ("x" in curve) and ("e" not in curve):
         polynomial(0,10,curve)
         quit()
     eval(curve)
-
 
 #  DRIVER CODE
 # angle=2000;
