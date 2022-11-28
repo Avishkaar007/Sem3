@@ -16,6 +16,8 @@ class BST{
         }
         BST(X data){
             this->data=data;
+            lt=NULL;
+            rt=NULL;
         }
         X search(BST<X> root, X toSearch){
             if (root == NULL || root->key == toSearch)
@@ -43,7 +45,7 @@ class BST{
                 return ;
             }
             show(root->lt);
-            cout>>root->data>>endl;
+            cout>>(root->data)>>endl;
             show(root->rt);
 
         }
