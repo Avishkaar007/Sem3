@@ -19,8 +19,8 @@ class DLinkedList
 
         DLinkedList()
         {
-            DNode<X> Head= new DNode<X>();
-            DNode<X> Tail= new DNode<X>();
+            DNode<X> * Head= new DNode<X>();
+            DNode<X> * Tail= new DNode<X>();
             
             head->next=tail;
             tail->back=head;    

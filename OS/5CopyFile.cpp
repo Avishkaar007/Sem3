@@ -6,7 +6,7 @@ using namespace std;
 
 
 int main(int argc , char ** argv){
-     char arr[200000];
+    char arr[200000];
     int n;
     int f1 = open(argv[1], O_RDONLY);
     int f2 = open(argv[2], O_WRONLY | O_CREAT);
