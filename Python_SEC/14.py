@@ -13,6 +13,7 @@ try:
     file.flush()
     file.close()
     
+    
     print("Alternative Lines copied Successfully")
 except:
     print("Error Occured")
