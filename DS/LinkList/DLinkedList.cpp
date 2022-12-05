@@ -128,7 +128,7 @@ class DLinkedList
 
 
 int main(){
-  
+
     DLinkedList<int> l;
     // l.input();
     l.addToFront(10);
