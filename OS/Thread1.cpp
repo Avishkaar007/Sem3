@@ -27,7 +27,7 @@ int main(int argc, char * argv[]){
         cerr << "\nError" << argv[0] << endl;
         exit(1);
     }
-     pthread_attr_init(&attr);
+    pthread_attr_init(&attr);
     pthread_create(&tid, &attr, runner, *argv);
     pthread_join(tid, NULL);
 }

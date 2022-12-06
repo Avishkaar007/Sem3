@@ -17,9 +17,10 @@ int main(int argc , char ** argv){
     if (f2 < 0)
         cout<<"\nTarget File cannot be opened/created.\n";
 
-    while ((n = read(f1, arr, 100)) > 0)
+    while ((n = read(f1, arr, 100)) > 0){
         write(f2, arr, n);
-
+        cout<<" n="<<n;
+    }
     write(f2, "\0", 1);
 
     if (n < 0)

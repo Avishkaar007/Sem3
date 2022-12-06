@@ -1,8 +1,4 @@
-# import playsound as ps
-# ps.playsound('D:\D\MUSIC\Ek Ajnabee Haseena se.mp3')
-# from mpl_toolkits import mplot3d
-from matplotlib import pyplot as plt
-fig=plt.figure()
-ax=plt.axes(projection="3d")
-
-plt.show()
+a=[1,2,3,4]
+b=[35,75,5,6,766,7,352,8,9]
+b.sort()
+print(b)

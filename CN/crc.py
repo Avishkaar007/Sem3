@@ -25,6 +25,7 @@ def mod2div(dividend,divisor):
 
     checkword = tmp
     return checkword
+
 def encode(data,generator):
     l_key = len(key)
     appended_data=data+'0'*(l_key-1)

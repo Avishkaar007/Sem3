@@ -63,7 +63,7 @@ int main()
         }
 
         else
-        {
+        {   
             cout << "This is a parent process" << endl;
             cout << "It's PID is : ";
             cout << getpid();
