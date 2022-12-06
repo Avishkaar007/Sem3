@@ -13,7 +13,6 @@ int main(){
     
 }
 
-
 /*  OUTPUT
 Kernel Version : 5.4.0-125-generic
 model           : 142

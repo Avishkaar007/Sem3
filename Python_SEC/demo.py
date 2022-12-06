@@ -1,4 +1,8 @@
-a=[1,2,3,4]
-b=[35,75,5,6,766,7,352,8,9]
-b.sort()
-print(b)
+
+import socket
+import threading
+import itertools
+
+list1=[1,2,3]
+list2=[1,2,3,4]
+print([1e7]*6)

@@ -9,6 +9,8 @@ def networkId(ip):
         nid=ip[0]+"."+ip[1]+"."+ip[2]
     elif tellClass(ip)==("D" or "E"):
         nid= ip[0]+"."+ip[1]+"."+ip[2]+"."+ip[3]
+    else :
+        nid=""
     return nid
 def hostId(ip):
     if tellClass(ip)=="A":
@@ -19,6 +21,8 @@ def hostId(ip):
         hid=ip[3]
     elif tellClass(ip)==("D" or "E"):
         hid= ""
+    else :
+        hid = ""
     return hid
 
 def tellClass(ip):

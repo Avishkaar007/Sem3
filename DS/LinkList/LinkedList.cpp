@@ -22,7 +22,6 @@ public:
         head = NULL;
     }
 
-
     // add front
     void addToFront(D data)
     {
@@ -40,27 +39,28 @@ public:
         }
     }
 
+    // add to tail
+    void addToTail(D data)
+    {
 
-    //add to tail 
-    void addToTail(D data){
-        
         // this->show();
-        Node<D> * temp = head;
-        
+        Node<D> *temp = head;
+
         // cout<<head->data
-        Node<D> * newNode= new Node<D>;
-        newNode->data=data;
-        if (head==NULL){
-            head=newNode;
+        Node<D> *newNode = new Node<D>;
+        newNode->data = data;
+        if (head == NULL)
+        {
+            head = newNode;
             return;
         }
-        while(temp->next!=NULL){
-            temp=temp->next;
+        while (temp->next != NULL)
+        {
+            temp = temp->next;
         }
-        temp->next=newNode;
+        temp->next = newNode;
         // cout<<newNode->data;
-        newNode->next=NULL;
-       
+        newNode->next = NULL;
     }
 
     // empty status
@@ -69,22 +69,21 @@ public:
         return head == NULL;
     }
 
-    
-
     // shows front element
     const D &front() const
     {
         return head->data;
     }
 
-    const D& tail() const{
-        Node<D> * temp = head;
-        while(temp->next!=NULL){
-            temp=temp->next;
+    const D &tail() const
+    {
+        Node<D> *temp = head;
+        while (temp->next != NULL)
+        {
+            temp = temp->next;
         }
         return temp->data;
     }
-
 
     // remove from Tail
     void removeTail()
@@ -97,9 +96,9 @@ public:
             cout << "Empty Linked List ";
         }
         else if (head->next == NULL)
-        {        
-        cout << "Now Linked List is empty ";
-        delete head;
+        {
+            cout << "Now Linked List is empty ";
+            delete head;
         }
         else
         {
@@ -110,11 +109,11 @@ public:
         }
     }
 
-    void removeFront(){
-        Node<D> * temp=head ;
-        head=head->next;
+    void removeFront()
+    {
+        Node<D> *temp = head;
+        head = head->next;
         delete temp;
-
     }
     // void insert(Node<D> * data  ,<D> data) // data to add
     // {
@@ -141,38 +140,46 @@ public:
     //     }
     // }
 
-    void show(){
-        cout<<endl;
-        if (this->head!=NULL){
-            cout<<this->head->data;
-            this->head=this->head->next;
-            while((this->head)!=NULL){
-                cout<<" -> "<<this->head->data;
-                this->head=this->head->next;
+    void show()
+    {
+        cout << endl;
+        if (this->head != NULL)
+        {
+            cout << this->head->data;
+            this->head = this->head->next;
+            while ((this->head) != NULL)
+            {
+                cout << " -> " << this->head->data;
+                this->head = this->head->next;
             }
-            cout<<endl;
+            cout << endl;
         }
     }
-    void input(){
-        bool flag=true;
-        while(flag){
-            cout<<"Enter data : ";
-            Node<D>* node=new Node<D>;
-            cin>>node->data;
+    void input()
+    {
+        bool flag = true;
+        while (flag)
+        {
+            cout << "Enter data : ";
+            Node<D> *node = new Node<D>;
+            cin >> node->data;
             // cout<<node->data<<endl;
             addToTail(node->data);
-            cout<<"DO you want to continue ? <y/n>";
+            cout << "DO you want to continue ? <y/n>";
             char choice;
-            cin>>choice;
-        
-            if (choice=='y'|| choice =='Y'){
+            cin >> choice;
+
+            if (choice == 'y' || choice == 'Y')
+            {
                 continue;
             }
-            else {flag=false;}
+            else
+            {
+                flag = false;
+            }
         }
     }
 };
-
 
 int main()
 {
@@ -187,6 +194,3 @@ int main()
     // l.removeFromTail();
     l.show();
 }
-
-
- 
