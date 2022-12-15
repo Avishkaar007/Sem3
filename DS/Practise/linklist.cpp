@@ -51,10 +51,24 @@ class LinkedList{
             cout<<tmp->data;
             while ((tmp->next)!=NULL){
                 tmp=tmp->next;
-                cout<<"->"<<tmp->data<<endl;
-                
-                
+                cout<<"->"<<tmp->data;
             }
+        }
+        void reverse(){
+            Node<X> *curr=head;
+            Node<X>* prev=NULL,*nxt=NULL;
+            while ( curr!=NULL){
+                nxt=curr->next;
+                curr->next=prev;
+                prev=curr;
+                curr=nxt;
+            }
+            head=prev;
+
+            // 10 20 30
+            // h  n   
+            //    t
+            // p 
         }
 };
 
@@ -62,6 +76,8 @@ int main(){
     LinkedList<int> ll;
     ll.addToTail(10);
     ll.addToTail(12);
-    ll.removeTail();
+    ll.addToTail(13);
+    ll.addToTail(15);
+    ll.reverse();
     ll.show();
 }
