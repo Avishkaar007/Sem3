@@ -1,123 +1,56 @@
+#include<iostream>
 
-// Shortest Remaining Time First (SRTF)
-
-#include <bits/stdc++.h>
 using namespace std;
-
-struct Process {
-	int pid; 
-	int bt; 
-	int art; // Arrival Time
-};
-
-void findWaitingTime(Process proc[], int n,
-								int wt[])
-{
-	int rt[n];
-
-	// Copy the burst time into rt[]
-	for (int i = 0; i < n; i++)
-		rt[i] = proc[i].bt;
-
-	int complete = 0, t = 0, minm = INT_MAX;
-	int shortest = 0, finish_time;
-	bool check = false;
-
-	// Process until all processes gets
-	// completed
-	while (complete != n) {
-
-		// Find process with minimum
-		// remaining time among the
-		// processes that arrives till the
-		// current time`
-		for (int j = 0; j < n; j++) {
-			if ((proc[j].art <= t) &&
-			(rt[j] < minm) && rt[j] > 0) {
-				minm = rt[j];
-				shortest = j;
-				check = true;
-			}
-		}
-
-		if (check == false) {
-			t++;
-			continue;
-		}
-
-		// Reduce remaining time by one
-		rt[shortest]--;
-
-		// Update minimum
-		minm = rt[shortest];
-		if (minm == 0)
-			minm = INT_MAX;
-
-		// If a process gets completely
-		// executed
-		if (rt[shortest] == 0) {
-
-			// Increment complete
-			complete++;
-			check = false;
-
-			// Find finish time of current
-			// process
-			finish_time = t + 1;
-
-			// Calculate waiting time
-			wt[shortest] = finish_time -
-						proc[shortest].bt -
-						proc[shortest].art;
-
-			if (wt[shortest] < 0)
-				wt[shortest] = 0;
-		}
-		// Increment time
-		t++;
-	}
-}
-
-void findTurnAroundTime(Process proc[], int n,
-						int wt[], int tat[])
-{
-
-	for (int i = 0; i < n; i++)
-		tat[i] = proc[i].bt + wt[i];
-}
-
-void findavgTime(Process proc[], int n)
-{
-	int wt[n], tat[n], total_wt = 0,
-					total_tat = 0;
-
-	findWaitingTime(proc, n, wt);
-	findTurnAroundTime(proc, n, wt, tat);
-	cout << " P\t\t"
-		<< "BT\t\t"
-		<< "WT\t\t"
-		<< "TAT\t\t\n";
-
-	for (int i = 0; i < n; i++) {
-		total_wt = total_wt + wt[i];
-		total_tat = total_tat + tat[i];
-		cout << " " << proc[i].pid << "\t\t"
-			<< proc[i].bt << "\t\t " << wt[i]
-			<< "\t\t " << tat[i] << endl;
-	}
-
-	cout << "\nAverage waiting time = "
-		<< (float)total_wt / (float)n;
-	cout << "\nAverage turn around time = "
-		<< (float)total_tat / (float)n<<endl;
-}
-
 int main()
 {
-	Process proc[] = { { 1, 6, 2 }, { 2, 2, 5 },
-					{ 3, 8, 1 }, { 4, 3, 0}, {5, 4, 4} };
-	int n = sizeof(proc) / sizeof(proc[0]);
+    int a[10],b[10],x[10];
+    int waiting[10],turnaround[10],completion[10];
+    int i,j,smallest,count=0,time,n;
+    double avg=0,tt=0,end;
 
-	findavgTime(proc, n);
-	return 0;
+    cout<<"\nEnter the number of Processes: ";  //input
+    cin>>n;
+    for(i=0; i<n; i++)
+    {
+        cout<<"\nEnter arrival time of process: ";  //input
+        cin>>a[i];
+    }
+    for(i=0; i<n; i++)
+    {
+        cout<<"\nEnter burst time of process: ";  //input
+        cin>>b[i];
+    }
+    for(i=0; i<n; i++)
+        x[i]=b[i];
+
+    b[9]=9999;
+    for(time=0; count!=n; time++)
+    {
+        smallest=9;
+        for(i=0; i<n; i++)
+        {
+            if(a[i]<=time && b[i]<b[smallest] && b[i]>0 )
+                smallest=i;
+        }
+        b[smallest]--;
+
+        if(b[smallest]==0)
+        {
+            count++;
+            end=time+1;
+            completion[smallest] = end;
+            waiting[smallest] = end - a[smallest] - x[smallest];
+            turnaround[smallest] = end - a[smallest];
+        }
+    }
+    cout<<"Process"<<"\t"<< "burst-time"<<"\t"<<"arrival-time" <<"\t"<<"waiting-time" <<"\t"<<"turnaround-time"<< "\t"<<"completion-time"<<endl;
+    for(i=0; i<n; i++)
+    {
+        cout<<"p"<<i+1<<"\t\t"<<x[i]<<"\t\t"<<a[i]<<"\t\t"<<waiting[i]<<"\t\t"<<turnaround[i]<<"\t\t"<<completion[i]<<endl;
+        avg = avg + waiting[i];
+        tt = tt + turnaround[i];
+    }
+    cout<<"\n\nAverage waiting time ="<<avg/n;
+    cout<<"  Average Turnaround time ="<<tt/n<<endl;
+
 }

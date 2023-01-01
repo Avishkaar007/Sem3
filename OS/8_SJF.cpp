@@ -1,79 +1,107 @@
 #include <iostream>
+#include <string>
 using namespace std;
 
-//Global Arrays
-int burstTimeArr[20]={};
-int sz={}; // sz of Array
-
-
-// "NON PREMPTIVE SHORTEST" JOB FIRST ALGORITHM
-// By Avishkaar Pawar 
-
-
-//Enter data in this array for debugging
-class process{
-    public:
-
-    string jobName;
-    int burstTime;
-    static int jobCount;
-
-    void setBurst(){
-        cout<<"Enter Burst time : ";
-        cin >> burstTime;
-        jobCount++;
+int sum(int arr[], int size)
+{
+    int s = 0;
+    for (int i = 0; i < size; i++)
+    {
+        s += arr[i];
     }
-    int getBurst(){
-        return burstTime;
-    }
-    
-    
-};
-int process::jobCount=0;
-process plst[100]; // Array to store processes
-
-void data(){
-    burstTimeArr[0]=10;
-    burstTimeArr[1]=12;
-    burstTimeArr[2]=7;
-    burstTimeArr[3]=9;
-    cout<<"Debug Data taken"<<endl;
+    return s;
 }
 
-void mySort(){
-   
-    for(int a=0;a<sz;a++){
-        for (int b=0;b<sz-a-1;b++){
-            if (burstTimeArr[b]>burstTimeArr[b+1]){
-                swap(burstTimeArr[a],burstTimeArr[a+1]);
+int main()
+{
+    int pCount = 0;
+ cout<<"\nEnter Number of Processes : ";
+    cin >> pCount;
+
+    double avgWaitingTime = 0.0;
+    double avgTurnAroundTime = 0.0;
+    string P_ID[pCount];
+    int BuzzTime[pCount];
+    int waitingTime[pCount];
+    int turnaroundTime[pCount];
+
+    for (int i = 0; i < pCount; i++)
+    {
+        cout << "\nNow, Enter the Process number " << i + 1 << " : ";
+        cin >> P_ID[i];
+
+        cout << "Enter Buzz Time of " << P_ID[i] << " : ";
+        cin >> BuzzTime[i];
+        cout << endl;
+    }
+
+    // Sorting
+    for (int i = 0; i < pCount; i++)
+    {
+        for (int j = 0; j < pCount - 1; j++)
+        {
+            if (BuzzTime[j] > BuzzTime[j + 1])
+            {
+                swap(BuzzTime[j], BuzzTime[j + 1]);
+                swap(P_ID[j], P_ID[j + 1]);
             }
-            cout<<burstTimeArr[b];
-            
         }
     }
-    
-}
 
-
-int main(){
-    cout<<"Enter number of process : "<<endl;
-    int sz;
-    cin>> sz; 
-    
-    data();
-    int done=0;
-    while (done<sz)
+    // waiting time
+    for (int i = 0; i < pCount; i++)
     {
-        process p;
-        p.setBurst();
-        plst[done]=p;
-        burstTimeArr[done]= plst[done].getBurst();
-        done++;
+        if (i == 0)
+        {
+            waitingTime[i] = 0;
+        }
+        else
+        {
+            waitingTime[i] = waitingTime[i-1] + BuzzTime[i - 1];
+        }
     }
-    mySort();
-    done=0;
-    while (done<sz){
-        cout<< burstTimeArr[done++]<<endl; 
-    }
-}
 
+    // turn around time
+    for (int i = 0; i < pCount; i++)
+    {
+        turnaroundTime[i] = waitingTime[i] + BuzzTime[i];
+    }
+
+    // again sorting to print table in sorted P_ID
+    for (int i = 0; i < pCount; i++)
+    {
+        for (int j = 0; j < pCount - 1; j++)
+        {
+            if (P_ID[j] > P_ID[j + 1])
+            {
+                swap(P_ID[j], P_ID[j + 1]);
+                swap(BuzzTime[j], BuzzTime[j + 1]);
+                swap(waitingTime[j], waitingTime[j + 1]);
+                swap(turnaroundTime[j], turnaroundTime[j + 1]);
+            }
+        }
+    }
+
+
+    // printing in form of table
+    cout <<" ---------------------------------------------------------------------------------" << endl;
+    cout << " | P_ID\t|\tBuzz Time\t|\tWaiting Time\t|\tTurn around Time|" << endl;
+    cout <<" ---------------------------------------------------------------------------------" << endl;
+    for (int i = 0; i < pCount; i++)
+    {
+        cout << " | "  << P_ID[i]             << "\t|";
+        cout << "  \t" << BuzzTime[i]        << "\t\t|";
+        cout << "  \t" << waitingTime[i]     << "\t\t|";
+        cout << "  \t" << turnaroundTime[i]  << "\t\t|";
+        cout << endl;
+    }
+    cout <<" ---------------------------------------------------------------------------------" << endl;
+
+    // printing avg wating and turn around time
+    cout << "Avg Waiting time     : " << (float)sum(waitingTime, pCount) / (float)pCount << endl;
+    cout << "Avg Turn Around time : " << (float)sum(turnaroundTime, pCount) / (float)pCount << endl;
+    cout << endl;
+
+
+    return 0;
+}

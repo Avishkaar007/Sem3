@@ -1,70 +1,60 @@
-#include <bits/stdc++.h>
-using namespace std;
-struct Process
-{
-    int pid;      // Process ID
-    int bt;       // CPU Burst time required
-    int priority; // Priority of this process
-};
-// sorting the Process acc. to the priority
-bool compare(Process a, Process b)
-{
-    return (a.priority > b.priority);
-}
-void waitingtime(Process pro[], int n, int wt[])
-{
-    // Initial waiting time for a process is 0
-    wt[0] = 0;
-    // calculating waiting time
-    for (int i = 1; i < n; i++)
-        wt[i] = pro[i - 1].bt + wt[i - 1];
-}
-// Function to calculate turn around time
-void turnarround(Process pro[], int n, int wt[], int tat[])
-{
-    // calculating turnaround time by adding
-    // bt[i] + wt[i]
-    for (int i = 0; i < n; i++)
-        tat[i] = pro[i].bt + wt[i];
-}
-// Function to calculate average time
-void avgtime(Process pro[], int n)
-{
-    int wt[n], tat[n], total_wt = 0, total_tat = 0;
-    // Function to find waiting time of all processes
-    waitingtime(pro, n, wt);
-    // Function to find turn around time for all processes
-    turnarround(pro, n, wt, tat);
-    // Display processes along with all details
-    cout << "\nProcesses "
-         << " Burst time "
-         << " Waiting time "
-         << " Turn around time\n";
-    // Calculate total waiting time and total turn
-    // around time
-    for (int i = 0; i < n; i++)
-    {
-        total_wt = total_wt + wt[i];
-        total_tat = total_tat + tat[i];
-        cout << " " << pro[i].pid << "\t\t" << pro[i].bt << "\t " << wt[i] << "\t\t " << tat[i] << endl;
-    }
-    cout << "\nAverage waiting time = " << (float)total_wt / (float)n;
-    cout << "\nAverage turn around time = " << (float)total_tat / (float)n;
-}
-void scheduling(Process pro[], int n)
-{
-    // Sort processes by priority
-    sort(pro, pro + n, compare);
-    cout << "Order in which processes gets executed \n";
-    for (int i = 0; i < n; i++)
-        cout << pro[i].pid << " ";
-    avgtime(pro, n);
-}
-// main function
+#include<iostream>
+
+ using namespace std;
 int main()
 {
-    Process pro[] = {{1, 10, 2}, {2, 5, 0}, {3, 8, 1}};
-    int n = sizeof pro / sizeof pro[0];
-    scheduling(pro, n);
-    return 0;
+    int a[10],b[10],x[10];
+    int waiting[10],turnaround[10],completion[10],p[10];
+    int i,j,smallest,count=0,time,n;
+    double avg=0,tt=0,end;
+
+   cout<<"\nEnter the number of Processes: ";
+    cin>>n;
+    for(i=0;i<n;i++)
+    {
+      cout<<"\nEnter arrival time of process: ";
+      cin>>a[i];
+    }
+    for(i=0;i<n;i++)
+    {
+      cout<<"\nEnter burst time of process: ";
+      cin>>b[i];
+    }
+    for(i=0;i<n;i++)
+    {
+      cout<<"\nEnter priority of process: ";
+      cin>>p[i];
+    }
+    for(i=0; i<n; i++)
+        x[i]=b[i];
+
+    p[9]=-1;
+    for(time=0; count!=n; time++)
+    {
+        smallest=9;
+        for(i=0; i<n; i++)
+        {
+            if(a[i]<=time && p[i]>p[smallest] && b[i]>0 )
+                smallest=i;
+        }
+        b[smallest]--;
+
+        if(b[smallest]==0)
+        {
+            count++;
+            end=time+1;
+            completion[smallest] = end;
+            waiting[smallest] = end - a[smallest] - x[smallest];
+            turnaround[smallest] = end - a[smallest];
+        }
+    }
+     cout<<"Process"<<"\t"<< "burst-time"<<"\t"<<"arrival-time" <<"\t"<<"waiting-time" <<"\t"<<"turnaround-time"<< "\t"<<"completion-time"<<"\t"<<"Priority"<<endl;
+    for(i=0; i<n; i++)
+    {
+         cout<<"p"<<i+1<<"\t\t"<<x[i]<<"\t\t"<<a[i]<<"\t\t"<<waiting[i]<<"\t\t"<<turnaround[i]<<"\t\t"<<completion[i]<<"\t\t"<<p[i]<<endl;
+        avg = avg + waiting[i];
+        tt = tt + turnaround[i];
+    }
+   cout<<"\n\nAverage waiting time ="<<avg/n;
+    cout<<"  Average Turnaround time ="<<tt/n<<endl;
 }

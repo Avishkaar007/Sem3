@@ -10,7 +10,6 @@ int main(){
     system("cat /proc/cpuinfo | awk 'NR==4 {print}' ");
     cout<<"CPU type : "<<flush;
     system("cat /proc/cpuinfo | awk 'NR==5 {print $4 $5 $6 $8 $9 }' ");
-    
 }
 
 /*  OUTPUT

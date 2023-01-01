@@ -30,12 +30,13 @@ void turnAroundTime(int burstTime[],int jobCount){
     }
 }
 void table(int burstTime[], int jobCount){
-    cout<<"Process Duration Wait_Time Turn_Around_Time"<<endl;
+    cout<<"Process |  Duration |  Wait_Time  |  Turn_Around_Time"<<endl;
     for(int a=0;a<jobCount;a++){
-        cout<<"    "<<a+1<<"        "<<burstTime[a]<<"       "<<waitArr[a]<<"     " <<turnAroundArr[a]<<endl;
+        cout<<"    "<<a+1<<" \t       "<<burstTime[a]<<"     \t  "<<waitArr[a]<<"     \t" <<turnAroundArr[a]<<endl;
     }
 }
 void init(int burstTime[],int jobCount){
+    
     waitingTime(burstTime,jobCount);
     turnAroundTime(burstTime,jobCount);
 }

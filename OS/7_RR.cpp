@@ -2,8 +2,7 @@
 using namespace std;
 // RR scheduling
 // AD-1224
-void findWaitingTime(int processes[], int n,
-                     int bt[], int wt[], int quantum)
+void findWaitingTime(int processes[], int n, int bt[], int wt[], int quantum)
 {
     int rem_bt[n];
     for (int i = 0; i < n; i++)
