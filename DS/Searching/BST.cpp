@@ -77,7 +77,6 @@ class BST{
                     BST<X>* temp=findMin(rt->rt);
                     root->data =temp->data;
                     root->rt=remove(rt->rt,root->data);
-
                     BST<X>* tmp=findMax(root->rt);
                     root->data =temp->data;
                     root->rt=remove(rt->rt,root->data);

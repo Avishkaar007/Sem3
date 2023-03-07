@@ -9,7 +9,7 @@ s.connect((host,port))
 
 while 2:
    data=s.recv(1024).decode()
-   print("Received --> "+data)
+   print(" Received --> "+data)
    str="Acknowledgement: Message Received"
    s.send(str.encode())
 
